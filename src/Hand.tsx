@@ -6,7 +6,7 @@ interface HandProps {
   cards: { id: string; message: string; flipped: boolean; image?: string }[];
   onCardClick: (id: string) => void;
   onToggleFlip: (id: string) => void;
-  onMoveCard?: (id: string) => void; // Optional for future use
+  onMoveCard?: (id: string) => void;
 }
 
 const Hand: React.FC<HandProps> = ({ name, cards, onCardClick, onToggleFlip }) => {
@@ -29,21 +29,8 @@ const Hand: React.FC<HandProps> = ({ name, cards, onCardClick, onToggleFlip }) =
               flipped={card.flipped}
               image={card.image}
               onClick={() => onCardClick(card.id)}
+              onFlip={()=>onToggleFlip(card.id)}
             />
-            <button
-              onClick={() => onToggleFlip(card.id)}
-              style={{
-                position: 'absolute',
-                bottom: '-20px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                fontSize: '0.8rem',
-                padding: '5px',
-                cursor: 'pointer',
-              }}
-            >
-              Flip
-            </button>
           </div>
         ))}
       </div>

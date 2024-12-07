@@ -6,9 +6,21 @@ interface CardProps {
   flipped: boolean;
   image?: string; // Optional image path
   onClick: () => void;
+  onFlip?: () => void;
+  onDiscard?: () => void;
+  onPlay?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ id, message, flipped, image, onClick }) => {
+const Card: React.FC<CardProps> = ({ 
+  id, 
+  message, 
+  flipped, 
+  image, 
+  onClick, 
+  onFlip, 
+  onDiscard, 
+  onPlay 
+}) => {
   return (
     <div
       onClick={onClick}
@@ -38,8 +50,51 @@ const Card: React.FC<CardProps> = ({ id, message, flipped, image, onClick }) => 
       ) : (
         <div style={{ fontSize: '12px' }}>{message}</div>
       )}
+
+      <div style={{
+        position: 'absolute',
+        bottom: '5px',
+        width: '90%',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}>
+        {onFlip && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); onFlip(); }} 
+            style={buttonStyle}
+          >
+            Flip
+          </button>
+        )}
+        {onDiscard && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); onDiscard(); }} 
+            style={buttonStyle}
+          >
+            Discard
+          </button>
+        )}
+        {onPlay && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); onPlay(); }} 
+            style={buttonStyle}
+          >
+            Play
+          </button>
+        )}
+      </div>
     </div>
   );
+};
+
+const buttonStyle = {
+  fontSize: '10px',
+  padding: '2px 4px',
+  border: 'none',
+  borderRadius: '4px',
+  backgroundColor: '#555',
+  color: '#fff',
+  cursor: 'pointer',
 };
 
 export default Card;

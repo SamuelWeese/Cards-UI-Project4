@@ -7,15 +7,15 @@ interface Card {
   id: string;
   message: string;
   flipped: boolean;
-  image?: string; // Optional image path
+  image?: string;
 }
 
 const App: React.FC = () => {
   const [deck, setDeck] = useState<Card[]>([
     { id: 'c1', message: 'Ace of Spades', flipped: false, image: '/cards/ace_of_spades.png' },
-    { id: 'c2', message: 'King of Hearts', flipped: false, image: '/images/king_hearts.png' },
-    { id: 'c3', message: 'Queen of Diamonds', flipped: false, image: '/images/queen_diamonds.png' },
-    { id: 'c4', message: 'Jack of Clubs', flipped: false, image: '/images/jack_clubs.png' },
+    { id: 'c2', message: 'King of Hearts', flipped: false, image: '/cards/king_of_hearts.png' },
+    { id: 'c3', message: 'Queen of Diamonds', flipped: false, image: '/cards/queen_of_diamonds.png' },
+    { id: 'c4', message: 'Jack of Clubs', flipped: false, image: '/cards/jack_of_clubs.png' },
   ]);
 
   const [hand1, setHand1] = useState<Card[]>([]);
