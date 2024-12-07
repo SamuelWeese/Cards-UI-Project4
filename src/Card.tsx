@@ -4,68 +4,40 @@ interface CardProps {
   id: string;
   message: string;
   flipped: boolean;
-  onClick: (id: string) => void;
+  image?: string; // Optional image path
+  onClick: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ id, message, flipped, onClick }) => {
+const Card: React.FC<CardProps> = ({ id, message, flipped, image, onClick }) => {
   return (
     <div
+      onClick={onClick}
       style={{
-        perspective: '1000px',
         width: '100px',
-        height: '150px',
+        height: '145px',
+        border: image && !flipped ? '0' : '1px solid black',
+        borderRadius: '8px',
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: flipped ? '#444' : '#Fa0',
+        color: flipped ? '#fff' : '#000',
+        cursor: 'pointer',
+        position: 'relative',
       }}
-      onClick={() => onClick(id)}
     >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s',
-          transform: flipped ? 'rotateY(180deg)' : 'none',
-        }}
-      >
-        {/* Front of the card */}
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            backgroundColor: 'white',
-            border: '1px solid black',
-            borderRadius: '8px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {message}
-        </div>
-
-        {/* Back of the card */}
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            backgroundColor: 'blue',
-            border: '1px solid black',
-            borderRadius: '8px',
-            transform: 'rotateY(180deg)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: 'white',
-            fontSize: '1.2rem',
-          }}
-        >
-          Card Back
-        </div>
-      </div>
+      {flipped ? (
+        <div style={{ fontSize: '12px' }}>Back</div>
+      ) : image ? (
+        <img
+          src={image}
+          alt={message}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
+      ) : (
+        <div style={{ fontSize: '12px' }}>{message}</div>
+      )}
     </div>
   );
 };
