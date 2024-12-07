@@ -94,7 +94,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '10px' }}>
       <h1>Card Game</h1>
       <Deck onDrawCard={drawCard} history={deckHistory} />
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
