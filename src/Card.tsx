@@ -4,9 +4,10 @@ interface CardProps {
   id: string;
   message: string;
   flipped: boolean;
+  tapped: boolean;
   image?: string;
-  onLeftClick: () => void;
-  onRightClick: () => void;
+  onLeftClick?: () => void;
+  onRightClick?: () => void;
   onFlip?: () => void;
   onDiscard?: () => void;
   onPlay?: () => void;
@@ -19,6 +20,7 @@ const Card: React.FC<CardProps> = ({
   id, 
   message, 
   flipped, 
+  tapped,
   image, 
   onLeftClick,
   onRightClick,
@@ -29,18 +31,10 @@ const Card: React.FC<CardProps> = ({
   cardWidth = 100,
   cardHeight = 145
 }) => {
-  const [isTapped, setIsTapped] = useState(false);
-
-  const handleLeftClick = () => {
-    onLeftClick();
-  };
-  const handleRightClick = () => {
-    onRightClick();
-  };
   return (
     <div
-      onClick={handleLeftClick}
-      onContextMenu={handleRightClick}
+      onClick={onLeftClick}
+      onContextMenu={onRightClick}
       style={{
         width: `${cardWidth}px`,
         height: `${cardHeight}px`,
@@ -54,8 +48,8 @@ const Card: React.FC<CardProps> = ({
         color: flipped ? '#fff' : '#000',
         cursor: 'pointer',
         position: 'relative',
-        transform: isTapped ? 'rotate(90deg)' : 'none', // Rotate the card to simulate tapping
-        opacity: isTapped ? 0.6 : 1, // Reduce opacity to show it's tapped
+        transform: tapped ? 'rotate(90deg)' : 'none',
+        opacity: tapped ? 0.6 : 1,
       }}
     >
       {flipped ? (
@@ -106,7 +100,7 @@ const Card: React.FC<CardProps> = ({
             cursor: 'pointer', 
             backgroundColor: '#EEEA',
             transform: 'scale(0.15)',
-            transformOrigin: 'bottom left',
+            transformOrigin: 'bottom right',
             width: '100px',
             height: '100px',
           }} 
@@ -137,12 +131,12 @@ const Card: React.FC<CardProps> = ({
           onClick={(e) => { e.stopPropagation(); onTap(); }} 
           style={{ 
             position: 'absolute',
-            top: '5px',
+            
             textAlign: 'center',
             cursor: 'pointer', 
             backgroundColor: '#EEEA',
             transform: 'scale(0.15)',
-            transformOrigin: 'bottom left',
+            transformOrigin: 'top center',
             width: '100px',
             height: '100px',
           }}

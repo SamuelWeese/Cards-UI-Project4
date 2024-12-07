@@ -3,7 +3,7 @@ import Card from './Card';
 
 interface PlayableAreaProps {
   onDrawCard: () => void;
-  history: { id: string; message: string; flipped: boolean; image?: string }[];
+  history: { id: string; message: string; flipped: boolean; tapped: boolean; image?: string }[];
 }
 
 const PlayableArea: React.FC<PlayableAreaProps> = ({ onDrawCard, history }) => {
@@ -53,6 +53,7 @@ const PlayableArea: React.FC<PlayableAreaProps> = ({ onDrawCard, history }) => {
             id={history[currentCardIndex].id}
             message={history[currentCardIndex].message}
             flipped={history[currentCardIndex].flipped}
+            tapped={history[currentCardIndex].tapped}
             image={history[currentCardIndex].image}
             onLeftClick={onDrawCard}
             onRightClick={()=>{}}

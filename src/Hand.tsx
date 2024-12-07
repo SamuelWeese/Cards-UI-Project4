@@ -3,9 +3,9 @@ import Card from './Card';
 
 interface HandProps {
   name: string;
-  cards: { id: string; message: string; flipped: boolean; image?: string }[];
-  onRightClick: (id: string) => void;
+  cards: { id: string; message: string; flipped: boolean; tapped: boolean, image?: string }[];
   onLeftClick: (id: string) => void;
+  onRightClick?: (id: string) => void;
   onFlip?: (id: string) => void;
   onDiscard?: (id: string) => void;
   onPlay?: (id: string) => void;
@@ -37,9 +37,10 @@ const Hand: React.FC<HandProps> = ({ name, cards,
               id={card.id}
               message={card.message}
               flipped={card.flipped}
+              tapped={card.tapped}
               image={card.image}
               onLeftClick={() => onLeftClick(card.id)}
-              onRightClick={() => onRightClick(card.id)}
+              onRightClick={onRightClick ? () => onRightClick(card.id): undefined}
               onFlip={onFlip ? () => onFlip(card.id) : undefined}
               onDiscard={onDiscard ? () => onDiscard(card.id) : undefined}
               onPlay={onPlay ? () => onPlay(card.id) : undefined}
