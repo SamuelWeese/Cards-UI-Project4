@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from './Card';
 
 interface DeckProps {
@@ -8,6 +8,13 @@ interface DeckProps {
 
 const Deck: React.FC<DeckProps> = ({ onDrawCard, history }) => {
   const isDeck = history.length > 0;
+  const historyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (historyRef.current) {
+      historyRef.current.scrollTop = historyRef.current.scrollHeight;
+    }
+  }, [history]);
 
   return (
     <div style={{ textAlign: 'center', marginBottom: '20px' }}>
@@ -46,13 +53,22 @@ const Deck: React.FC<DeckProps> = ({ onDrawCard, history }) => {
         )}
       </div>
       <h4>History</h4>
-      <ul style={{ listStyleType: 'none', padding: 0 }}>
-        {history.map((entry, index) => (
-          <li key={index} style={{ fontSize: '0.9rem' }}>
-            {entry}
-          </li>
-        ))}
-      </ul>
+      <div
+        ref={historyRef}
+        style={{
+          maxHeight: '50px',
+          minHeight: '50px',
+          overflowY: 'scroll',
+        }}
+      >
+        <ul style={{ listStyleType: 'none', padding: 0 }}>
+          {history.map((entry, index) => (
+            <li key={index} style={{ fontSize: '0.9rem' }}>
+              {entry}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
