@@ -16,7 +16,7 @@ const Hand: React.FC<HandProps> = ({ name, cards, onCardClick, onToggleFlip }) =
       <div
         style={{
           display: 'flex',
-          gap: '10px',
+          gap: '3px',
           justifyContent: 'center',
           flexWrap: 'wrap',
         }}
