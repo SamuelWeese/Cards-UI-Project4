@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
 
 interface DeckProps {
@@ -34,7 +34,7 @@ const Deck: React.FC<DeckProps> = ({ onDrawCard, history }) => {
         onClick={!isDeck ? onDrawCard : undefined}
       >
         {isDeck ? (
-          <Card id="deck-card" message="Draw" flipped={true} onClick={onDrawCard} />
+          <Card id="deck-card" message="Draw" flipped={true} onLeftClick={onDrawCard} onRightClick={()=>{}} />
         ) : (
           <div 
             style={{

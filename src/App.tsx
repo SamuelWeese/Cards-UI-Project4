@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Deck from './Deck';
 import Hand from './Hand';
 import PlayableArea from './PlayableArea';
+import { NONAME } from 'dns';
 
 interface Card {
   id: string;
@@ -67,13 +68,13 @@ const App: React.FC = () => {
   { id: 'sj', message: 'Jack of Spades', flipped: false, image: '/cards/jack_of_spades.png' },
   { id: 'sq', message: 'Queen of Spades', flipped: false, image: '/cards/queen_of_spades.png' },
   { id: 'sk', message: 'King of Spades', flipped: false, image: '/cards/king_of_spades.png' },
-  { id: 'sa', message: 'Ace of Spades', flipped: false, image: '/cards/ace_of_spades.png' },
+    { id: 'sa', message: 'Ace of Spades', flipped: false, image: '/cards/ace_of_spades.png' },
   ]);
 
   const [hand1, setHand1] = useState<Card[]>([]);
   const [playableArea, setPlayableArea] = useState<Card[]>([]);
   const [deckHistory, setDeckHistory] = useState<string[]>([]);
-  const [playHistory, setPlayHistory] = useState<string[]>([]);
+  const [playHistory, setPlayHistory] = useState<Card[]>([]); // Updated to Card array
 
   const drawCard = () => {
     if (deck.length > 0) {
@@ -89,7 +90,7 @@ const App: React.FC = () => {
     if (cardToPlay) {
       setHand1(hand1.filter((card) => card.id !== id));
       setPlayableArea([...playableArea, cardToPlay]);
-      setPlayHistory([...playHistory, `Played ${cardToPlay.message}`]);
+      setPlayHistory([...playHistory, cardToPlay]);
     }
   };
 
@@ -101,18 +102,18 @@ const App: React.FC = () => {
         <Hand
           name="Player 1"
           cards={hand1}
-          onCardClick={playCard}
-          onToggleFlip={(id) =>
+          onLeftClick={playCard}
+          onRightClick={()=>{}}
+          onFlip={(id) =>
             setHand1(
               hand1.map((card) =>
                 card.id === id ? { ...card, flipped: !card.flipped } : card
               )
             )
           }
-          onMoveCard={() => {} }
         />
       </div>
-      <PlayableArea cards={playableArea} onCardPlay={() => {}} history={playHistory} />
+      <PlayableArea history={playHistory} onDrawCard={() => {}} />
     </div>
   );
 };

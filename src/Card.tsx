@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CardProps {
   id: string;
   message: string;
   flipped: boolean;
   image?: string;
-  onClick: () => void;
+  onLeftClick: () => void;
+  onRightClick: () => void;
   onFlip?: () => void;
   onDiscard?: () => void;
   onPlay?: () => void;
+  onTap?: () => void;
   cardWidth?: number;
   cardHeight?: number;
 }
@@ -18,16 +20,27 @@ const Card: React.FC<CardProps> = ({
   message, 
   flipped, 
   image, 
-  onClick, 
+  onLeftClick,
+  onRightClick,
   onFlip, 
   onDiscard, 
   onPlay,
+  onTap,
   cardWidth = 100,
   cardHeight = 145
 }) => {
+  const [isTapped, setIsTapped] = useState(false);
+
+  const handleLeftClick = () => {
+    onLeftClick();
+  };
+  const handleRightClick = () => {
+    onRightClick();
+  };
   return (
     <div
-      onClick={onClick}
+      onClick={handleLeftClick}
+      onContextMenu={handleRightClick}
       style={{
         width: `${cardWidth}px`,
         height: `${cardHeight}px`,
@@ -41,6 +54,8 @@ const Card: React.FC<CardProps> = ({
         color: flipped ? '#fff' : '#000',
         cursor: 'pointer',
         position: 'relative',
+        transform: isTapped ? 'rotate(90deg)' : 'none', // Rotate the card to simulate tapping
+        opacity: isTapped ? 0.6 : 1, // Reduce opacity to show it's tapped
       }}
     >
       {flipped ? (
@@ -114,6 +129,24 @@ const Card: React.FC<CardProps> = ({
             height: '100px',
           }}
         />
+        )}
+        {onTap && (
+          <img 
+          src="/icons/tap.svg" 
+          alt="Click to tap" 
+          onClick={(e) => { e.stopPropagation(); onTap(); }} 
+          style={{ 
+            position: 'absolute',
+            top: '5px',
+            textAlign: 'center',
+            cursor: 'pointer', 
+            backgroundColor: '#EEEA',
+            transform: 'scale(0.15)',
+            transformOrigin: 'bottom left',
+            width: '100px',
+            height: '100px',
+          }}
+          />
         )}
       </div>
     </div>
