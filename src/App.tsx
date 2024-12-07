@@ -57,7 +57,7 @@ const App: React.FC = () => {
               )
             )
           }
-          onMoveCard={() => {} /* This can be used for other interactions */}
+          onMoveCard={() => {} }
         />
       </div>
       <PlayableArea cards={playableArea} onCardPlay={() => {}} history={playHistory} />

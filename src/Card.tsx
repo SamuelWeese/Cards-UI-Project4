@@ -4,11 +4,13 @@ interface CardProps {
   id: string;
   message: string;
   flipped: boolean;
-  image?: string; // Optional image path
+  image?: string;
   onClick: () => void;
   onFlip?: () => void;
   onDiscard?: () => void;
   onPlay?: () => void;
+  cardWidth?: number;
+  cardHeight?: number;
 }
 
 const Card: React.FC<CardProps> = ({ 
@@ -19,14 +21,16 @@ const Card: React.FC<CardProps> = ({
   onClick, 
   onFlip, 
   onDiscard, 
-  onPlay 
+  onPlay,
+  cardWidth = 100,
+  cardHeight = 145
 }) => {
   return (
     <div
       onClick={onClick}
       style={{
-        width: '100px',
-        height: '145px',
+        width: `${cardWidth}px`,
+        height: `${cardHeight}px`,
         border: image && !flipped ? '0' : '1px solid black',
         borderRadius: '8px',
         textAlign: 'center',
@@ -50,37 +54,66 @@ const Card: React.FC<CardProps> = ({
       ) : (
         <div style={{ fontSize: '12px' }}>{message}</div>
       )}
-
+      {onFlip && (
+        <img 
+          src="/icons/flip.svg" 
+          alt="Click to flip" 
+          onClick={(e) => { e.stopPropagation(); onFlip(); }} 
+          style={{ 
+            position: 'absolute',
+            bottom: '5px',
+            left: '5px',
+            cursor: 'pointer', 
+            backgroundColor: '#EEEA',
+            transform: 'scale(0.15)',
+            transformOrigin: 'bottom left',
+            width: '100px',
+            height: '100px',
+          }} 
+        />
+      )}
       <div style={{
         position: 'absolute',
         bottom: '5px',
-        width: '90%',
+        right: '5px',
         display: 'flex',
-        justifyContent: 'space-between',
+        gap: '5px',
       }}>
-        {onFlip && (
-          <button 
-            onClick={(e) => { e.stopPropagation(); onFlip(); }} 
-            style={buttonStyle}
-          >
-            Flip
-          </button>
-        )}
         {onDiscard && (
-          <button 
-            onClick={(e) => { e.stopPropagation(); onDiscard(); }} 
-            style={buttonStyle}
-          >
-            Discard
-          </button>
+          <img 
+          src="/icons/trash.svg" 
+          alt="Click to discard" 
+          onClick={(e) => { e.stopPropagation(); onDiscard(); }} 
+          style={{ 
+            position: 'absolute',
+            bottom: '5px',
+            right: '5px',
+            cursor: 'pointer', 
+            backgroundColor: '#EEEA',
+            transform: 'scale(0.15)',
+            transformOrigin: 'bottom left',
+            width: '100px',
+            height: '100px',
+          }} 
+        />
         )}
         {onPlay && (
-          <button 
-            onClick={(e) => { e.stopPropagation(); onPlay(); }} 
-            style={buttonStyle}
-          >
-            Play
-          </button>
+          <img 
+          src="/icons/play.svg" 
+          alt="Click to play" 
+          onClick={(e) => { e.stopPropagation(); onPlay(); }} 
+          style={{ 
+            position: 'absolute',
+            bottom: '5px',
+            textAlign: 'center',
+            cursor: 'pointer', 
+            backgroundColor: '#EEEA',
+            transform: 'scale(0.15)',
+            transformOrigin: 'bottom left',
+            width: '100px',
+            height: '100px',
+          }}
+        />
         )}
       </div>
     </div>

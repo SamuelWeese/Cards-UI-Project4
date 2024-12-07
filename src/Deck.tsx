@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card'; // Assuming Card is in the same directory
+import Card from './Card';
 
 interface DeckProps {
   onDrawCard: () => void;
