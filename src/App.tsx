@@ -96,7 +96,8 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: '10px' }}>
-      <h1>Card Game</h1>
+      <h1>Card Game Library</h1>
+      <h2><a href="https://github.com/SamuelWeese/Cards-UI-Project4">View Source Code</a></h2>
       <Deck onDrawCard={drawCard} history={deckHistory} />
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <Hand
@@ -109,11 +110,14 @@ const App: React.FC = () => {
               hand1.map((card) =>
                 card.id === id ? { ...card, flipped: !card.flipped } : card
               ))}
-          onTap={(id) =>
-            setHand1(
-              hand1.map((card) =>
-                card.id === id ? { ...card, tapped: card.tapped } : card
-              ))}
+              onTap={(id) =>
+                setHand1(
+                  hand1.map((card) =>
+                    card.id === id ? { ...card, tapped: !card.tapped } : card
+                  )
+                )
+              }
+              onReorderCards={()=>{}}
         />
       </div>
       <PlayableArea history={playHistory} onDrawCard={() => {}} />

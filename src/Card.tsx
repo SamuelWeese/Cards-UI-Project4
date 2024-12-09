@@ -63,6 +63,8 @@ const Card: React.FC<CardProps> = ({
       ) : (
         <div style={{ fontSize: '12px' }}>{message}</div>
       )}
+
+      {/* Bottom Left - onFlip */}
       {onFlip && (
         <img 
           src="/icons/flip.svg" 
@@ -81,15 +83,10 @@ const Card: React.FC<CardProps> = ({
           }} 
         />
       )}
-      <div style={{
-        position: 'absolute',
-        bottom: '5px',
-        right: '5px',
-        display: 'flex',
-        gap: '5px',
-      }}>
-        {onDiscard && (
-          <img 
+
+      {/* Bottom right - onDiscard */}
+      {onDiscard && (
+        <img 
           src="/icons/trash.svg" 
           alt="Click to discard" 
           onClick={(e) => { e.stopPropagation(); onDiscard(); }} 
@@ -105,16 +102,18 @@ const Card: React.FC<CardProps> = ({
             height: '100px',
           }} 
         />
-        )}
-        {onPlay && (
-          <img 
+      )}
+
+      {/* Bottom left (above onFlip) - onPlay */}
+      {onPlay && (
+        <img 
           src="/icons/play.svg" 
           alt="Click to play" 
           onClick={(e) => { e.stopPropagation(); onPlay(); }} 
           style={{ 
             position: 'absolute',
-            bottom: '5px',
-            textAlign: 'center',
+            bottom: '40px', // Position above onFlip
+            left: '5px',
             cursor: 'pointer', 
             backgroundColor: '#EEEA',
             transform: 'scale(0.15)',
@@ -123,38 +122,29 @@ const Card: React.FC<CardProps> = ({
             height: '100px',
           }}
         />
-        )}
-        {onTap && (
-          <img 
-          src="/icons/tap.svg" 
+      )}
+
+      {/* Left (above onFlip) - onTap */}
+      {onTap && (
+        <img 
+          src="/icons/tap.png" 
           alt="Click to tap" 
           onClick={(e) => { e.stopPropagation(); onTap(); }} 
           style={{ 
             position: 'absolute',
-            
-            textAlign: 'center',
+            bottom: '75px',
+            left: '5px',
             cursor: 'pointer', 
             backgroundColor: '#EEEA',
             transform: 'scale(0.15)',
-            transformOrigin: 'top center',
+            transformOrigin: 'bottom left',
             width: '100px',
             height: '100px',
           }}
-          />
-        )}
-      </div>
+        />
+      )}
     </div>
   );
-};
-
-const buttonStyle = {
-  fontSize: '10px',
-  padding: '2px 4px',
-  border: 'none',
-  borderRadius: '4px',
-  backgroundColor: '#555',
-  color: '#fff',
-  cursor: 'pointer',
 };
 
 export default Card;

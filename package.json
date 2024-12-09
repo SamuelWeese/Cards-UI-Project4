@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.3.2",
     "@types/simple-peer": "^9.11.8",
     "react": "^19.0.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
     "react-use-websocket": "^4.11.1",
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.8",
     "ajv": "^8.17.1"
   }
 }
