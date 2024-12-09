@@ -98,7 +98,7 @@ const App: React.FC = () => {
     <div style={{ padding: '10px' }}>
       <h1>Card Game Library</h1>
       <h2><a href="https://github.com/SamuelWeese/Cards-UI-Project4">View Source Code</a></h2>
-      <Deck onDrawCard={drawCard} history={deckHistory} />
+      <Deck onDrawCard={drawCard} history={deckHistory} incomingDeckLength={deck.length}/>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <Hand
           name="Player 1"
@@ -117,7 +117,6 @@ const App: React.FC = () => {
                   )
                 )
               }
-              onReorderCards={()=>{}}
         />
       </div>
       <PlayableArea history={playHistory} onDrawCard={() => {}} />

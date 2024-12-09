@@ -4,10 +4,11 @@ import Card from './Card';
 interface DeckProps {
   onDrawCard: () => void;
   history: string[];
+  incomingDeckLength: number;
 }
 
-const Deck: React.FC<DeckProps> = ({ onDrawCard, history }) => {
-  const isDeck = history.length > 0;
+const Deck: React.FC<DeckProps> = ({ onDrawCard, history, incomingDeckLength }) => {
+  const isDeck = incomingDeckLength > 0;
   const historyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
