@@ -27,7 +27,11 @@ There is no central play area except to display cards.
 
 ### Cards and Castles
 
-This displays cards fanning out in the hand. I dislike that you can't see the whole card without hovering on it, and it would be a cool option to have it spread. Playing cards is done via drag and drop. I do like that, I 
+This displays cards fanning out in the hand. I dislike that you can't see the whole card without hovering on it, and it would be a cool option to have it spread. Playing cards is done via drag and drop. I do like that, but I think that that would take a lot of work. I'll add that in the future.
+
+### Card Games.io
+
+This is a site with tons of card games. I like that the cards show nicely and stack on each other to have a compressed area, but the site only supports traditional card games. I think I want my cards to do more than just this!
 
 ## 3. Sketch and get feedback
 
@@ -38,10 +42,6 @@ This displays cards fanning out in the hand. I dislike that you can't see the wh
 ### Deck
 
 ### Play Area
-
-### Figma
-I also created a digital sketch using Figma of the homepage. [You can view it here.](https://www.figma.com/design/YuXij3fd8w6rPIs51JV1G0/Figma-basics?node-id=601-9&t=cAYFKjjlQhCwvhNZ-1)
-
 
 ## Implementation of this application 
 
@@ -63,8 +63,12 @@ exports
 
 ## Use of AI
 - I used chatgpt to start this project! [Here is the first pass.](https://chatgpt.com/c/6753d097-a5d8-800f-a139-a3a677589a56)
-# Future work
-Obviously the work is never finished. Specifically I want to add the following features:
-## P2P
 
+# Future work
+
+Obviously the work is never finished. Specifically I want to add the following features:
+- Peer to Peer networking for multiplayer play
+- Non-react implementation (for speed)
+- 
+  
 ## Demo Video 
