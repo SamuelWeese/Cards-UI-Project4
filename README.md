@@ -33,15 +33,25 @@ This displays cards fanning out in the hand. I dislike that you can't see the wh
 
 This is a site with tons of card games. I like that the cards show nicely and stack on each other to have a compressed area, but the site only supports traditional card games. I think I want my cards to do more than just this!
 
-## 3. Sketch and get feedback
+### Take Aways
 
+1. I don't want this library to tie 1 component to another component. A player should have a hand, and a hand should have cards, but the type of cards, where the cards can go, what they can do should all be library agnostic.
 
+2. I want the deck to display a card, and the play area to display cards.
+
+3. I want cards to have unlimited additional functionality, and hotkeys. So hovering over a card and then clicking a hot key should execute some form of lambda function upon it.
 
 ### Hand
 
+This should be a set of cards displayed to only one user. Realistically, it should be seen as the back of cards by other players, but that is for the future and networking.
+
 ### Deck
 
+This can just be a card, which upon clicking removes a card from que of the deck.
+
 ### Play Area
+
+This should be agnostic, and not really implemented. A simple, overridable one would just be playing cards onto a deck.
 
 ## Implementation of this application 
 
@@ -69,6 +79,6 @@ exports
 Obviously the work is never finished. Specifically I want to add the following features:
 - Peer to Peer networking for multiplayer play
 - Non-react implementation (for speed)
-- 
+- Adding hover over clicking
   
 ## [Demo Video](https://uc.mediaspace.kaltura.com/media/1_dppu1sc6)
