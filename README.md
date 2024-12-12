@@ -1,7 +1,8 @@
 # User_Interface_Project_4
 Sam Weese
 
-## [Site](https://www.samuelweese.com/Cards-UI-Project4/)
+
+[Site](https://www.samuelweese.com/Cards-UI-Project4/)
 
 ## 1. Description of the project
 I graduate college on Saturday. For the past 3 and a half years, I have made friends, worked with, and enjoyed "hanging" with my peers at college. All of that may go away from me this coming Sunday. 
